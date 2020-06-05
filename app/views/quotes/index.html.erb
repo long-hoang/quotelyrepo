@@ -1,1 +1,8 @@
-<h1> Quotely App </h1>
+<%= link_to 'Create New Quote', new_quote_path %>
+<br/>
+<% @quotes.each do |quote| %>
+  <%= quote.phrase %>
+  <%= quote.author %>
+
+  
+<% end %>
