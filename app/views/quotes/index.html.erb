@@ -1,8 +1,64 @@
-<%= link_to 'Create New Quote', new_quote_path %>
-<br/>
-<% @quotes.each do |quote| %>
-  <%= quote.phrase %>
-  <%= quote.author %>
 
-  
-<% end %>
+<!-- Button trigger modal -->
+<%= link_to 'Create New Quote', '#', data: {toggle: 'modal', target: "#newquoteform"} , class: 'btn btn-primary' %>
+<br/>
+
+
+
+<!-- <div class = 'box col-10 offset-1'>
+  <%= week_calendar number_of_weeks: 1 do |date| %>
+    <%= date %>
+  <% end %>
+</div> -->
+<div class = "row col-10 ">
+  <div class = "box col-7" > 
+    <% @quotes.each do |quote| %>
+      <div class = "box">
+      <%= quote.phrase %>
+      <%= quote.author %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class = "box col-5 "> 
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Button with data-target
+      </button>
+
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body">
+          <%= month_calendar  do |date| %>
+            <%= date.day %>
+          <% end %> 
+        </div>
+      </div>      
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="newquoteform" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <%= simple_form_for Quote.new do |f| %>
+            <%= f.input :phrase %>
+            <%= f.input :author %>
+            <%= f.submit 'Create', class: 'btn btn-primary' %>
+          <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
